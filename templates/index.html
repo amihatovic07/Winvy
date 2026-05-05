@@ -2,15 +2,15 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <link href="./../static/main.css" rel="stylesheet">
+        <link href="{{ url_for('static', filename='main.css') }}" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
         <title>Winvy</title>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #e3f2fd;" data-bs-theme="light">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            <a class="navbar-brand" href="/">
+                <img src="{{ url_for('static', filename='Logo.png') }}" alt="Logo" width="30" height="40" class="d-inline-block align-text-top">
                 Winvy
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,10 +28,10 @@
                             <a class="nav-link" href="/ukloni_artikle">Ukloni artikl</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/uredi">Uredi artikl</a>
+                            <a class="nav-link" href="/uredi_artikle">Uredi artikl</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/analizira">Analiziraj artikle</a>
+                            <a class="nav-link" href="/analiziraj_artikle">Analiziraj artikle</a>
                         </li>
                     </ul>
               </div>

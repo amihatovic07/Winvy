@@ -41,9 +41,18 @@ def ukloni():
         return redirect('/')
     return render_template('ukloni.html')
 
-@app.route('/uredi_artikle', methods=['PUT'])
+@app.route('/uredi_artikle', methods=['GET', 'POST'])
 def uredi():
-    return render_template('index.html')
+    if request.method == 'POST':
+        naziv = request.form['naziv']
+        with db_session:
+            artikl = Artikl.get(naziv=naziv)
+            if artikl:
+                artikl.cijena = float(request.form['cijena'])
+                artikl.kolicina = int(request.form['kolicina'])
+                artikl.kategorija = request.form['kategorija']
+            return redirect('/')
+    return render_template('uredi.html')
 
 @app.route('/analiziraj_artikle', methods=['GET'])
 def analiziraj():

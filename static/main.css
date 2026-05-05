@@ -6,13 +6,8 @@ body {
     margin:0;
 }
 .navbar {
-    margin-bottom: 50px;
+    margin-bottom: 125px;
 }
-.opis {
-    text-align:center;
-    padding:20px;
-    margin:auto;
-    background-color: #fafafa
-    border-radius:15px;
-    width:100%;
+.navbar-brand {
+    margin-right:35px;
 }

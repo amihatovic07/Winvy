@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Uredi artikl</h2>
+    <form method="POST" action="/uredi_artikle">
+        <input type="text" name="naziv" placeholder="Naziv artikla koji se uređuje" class="form-control mb-2">
+        <input type="text" name="cijena" placeholder="Cijena artikla" class="form-control mb-2">
+        <input type="text" name="kolicina" placeholder="Količina artikla" class="form-control mb-2">
+        <input type="text" name="kategorija" placeholder="Kategorija artikla" class="form-control mb-2">
+        <button type="submit" class="btn btn-primary">Uredi</button>
+    </form>
+</div>
+{% endblock %}
