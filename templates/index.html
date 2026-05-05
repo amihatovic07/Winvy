@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <link href="./../static/main.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-        <title>Početna stranica</title>
+        <title>Winvy</title>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #e3f2fd;" data-bs-theme="light">
@@ -19,34 +19,48 @@
               <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Dodaj artikl</a>
+                            <a class="nav-link" href="/dodaj_artikle">Dodaj artikl</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Ukloni artikl</a>
+                            <a class="nav-link" href="/ukloni_artikle">Ukloni artikl</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Uredi artikl</a>
+                            <a class="nav-link" href="/uredi">Uredi artikl</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Analiziraj artikle</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pregled artikala</a>
+                            <a class="nav-link" href="/analizira">Analiziraj artikle</a>
                         </li>
                     </ul>
               </div>
           </div>
         </nav>
-        <div class="opis">
-            <h1>Opis projekta</h1>
-            <p>Navedeni projekt je kreiran za kolegij Informacijski sustavi te je važnost navedenog projekta od velikog značaja s obzirom da uvodi backend logiku, baze<br> podataka te detaljniji frontend development unutar izrade web servisa koji se izrađuje za ovaj projekt.</p>
-            <p>Winvy je kreirao: Alex Mihatović 1. godina fakulteta informatike, redovni smjer informatika.</p>
-        </div>
         {% block content %}
         {% endblock %}
+        <div class="container mt-4">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Naziv</th>
+                        <th>Cijena</th>
+                        <th>Kolicina</th>
+                        <th>Kategorija</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for artikl in artikli %}
+                    <tr>
+                        <td>{{ artikl.naziv }}</td>
+                        <td>{{ artikl.cijena }}</td>
+                        <td>{{ artikl.kolicina }}</td>
+                        <td>{{ artikl.kategorija }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

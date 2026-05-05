@@ -1,0 +1,11 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Ukloni artikl</h2>
+    <form method="POST" action="/ukloni_artikle">
+        <input type="text" name="naziv" placeholder="Naziv artikla" class="form-control mb-2">
+        <button type="submit" class="btn btn-danger">Ukloni</button>
+    </form>
+</div>
+{% endblock %}

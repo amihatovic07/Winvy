@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Dodaj artikl</h2>
+    <form method="POST" action="/dodaj_artikle">
+        <input type="text" name="naziv" placeholder="Naziv" class="form-control mb-2">
+        <input type="number" name="cijena" placeholder="Cijena" step="0.01" class="form-control mb-2">
+        <input type="number" name="kolicina" placeholder="Kolicina" class="form-control mb-2">
+        <input type="text" name="kategorija" placeholder="Kategorija" class="form-control mb-2">
+        <button type="submit" class="btn btn-primary">Dodaj</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, make_response, jsonify
+from flask import Flask, request, render_template, make_response, jsonify, redirect
 from pony.orm import Database, Required, Set, db_session
 
 app = Flask(__name__)
@@ -16,15 +16,30 @@ db.generate_mapping(create_tables=True)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    with db_session:
+        artikli = list(Artikl.select())[:]
+        lista = [{"naziv": a.naziv, "cijena": a.cijena, "kolicina": a.kolicina, "kategorija": a.kategorija} for a in artikli]
+    return render_template("index.html", artikli=lista)
 
-@app.route('/dodaj_artikle', methods=['POST'])
+@app.route('/dodaj_artikle', methods=['GET', 'POST'])
 def dodaj():
-    return render_template('index.html')
+    if request.method == 'POST':
+        data = request.form
+        with db_session:
+            Artikl(naziv=data['naziv'], cijena=float(data['cijena']), kolicina=int(data['kolicina']), kategorija=data['kategorija'])
+        return redirect('/')
+    return render_template('dodaj.html')
 
-@app.route('/ukloni_artikle', methods=['DELETE'])
+@app.route('/ukloni_artikle', methods=['GET', 'POST'])
 def ukloni():
-    return render_template('index.html')
+    if request.method == 'POST':
+        naziv = request.form['naziv']
+        with db_session:
+            artikl = Artikl.get(naziv=naziv)
+            if artikl:
+                artikl.delete()
+        return redirect('/')
+    return render_template('ukloni.html')
 
 @app.route('/uredi_artikle', methods=['PUT'])
 def uredi():
@@ -34,9 +49,12 @@ def uredi():
 def analiziraj():
     return render_template('index.html')
 
-@app.route('/pregled_artikle', methods=['GET'])
+@app.route('/pregledaj_artikle', methods=['GET'])
 def pregled():
-    return render_template('index.html')
+    with db_session:
+        artikli = list(Artikl.select())[:]
+        lista = [{"naziv": a.naziv, "cijena": a.cijena, "kolicina": a.kolicina, "kategorija": a.kategorija} for a in artikli]
+    return make_response(jsonify(lista), 200)
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
