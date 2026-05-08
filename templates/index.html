@@ -1,66 +1,24 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <link href="{{ url_for('static', filename='main.css') }}" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-        <title>Winvy</title>
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #e3f2fd;" data-bs-theme="light">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="/">
-                <img src="{{ url_for('static', filename='Logo.png') }}" alt="Logo" width="30" height="40" class="d-inline-block align-text-top">
-                Winvy
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/dodaj_artikle">Dodaj artikl</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/ukloni_artikle">Ukloni artikl</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/uredi_artikle">Uredi artikl</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/analiziraj_artikle">Analiziraj artikle</a>
-                        </li>
-                    </ul>
-              </div>
-          </div>
-        </nav>
-        {% block content %}
-        {% endblock %}
-        <div class="container mt-4">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Naziv</th>
-                        <th>Cijena</th>
-                        <th>Kolicina</th>
-                        <th>Kategorija</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for artikl in artikli %}
-                    <tr>
-                        <td>{{ artikl.naziv }}</td>
-                        <td>{{ artikl.cijena }}</td>
-                        <td>{{ artikl.kolicina }}</td>
-                        <td>{{ artikl.kategorija }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+{% extends "main.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Pregled artikala</h2>
+
+    <div class="row">
+        {% for artikl in artikli %}
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ artikl.naziv }}</h5>
+                    <p class="card-text">
+                        <strong>Cijena:</strong> {{ artikl.cijena }} €<br>
+                        <strong>Količina:</strong> {{ artikl.kolicina }}<br>
+                        <strong>Kategorija:</strong> {{ artikl.kategorija }}
+                    </p>
+                </div>
+            </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
-</html>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="row mt-4">
+
+    <div class="col-md-4">
+        <div class="card text-bg-primary mb-3 shadow rounded-4">
+            <div class="card-body">
+                <h5 class="card-title">Ukupna količina</h5>
+                <p class="card-text">{{ ukupna_kolicina }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-bg-success mb-3 shadow rounded-4">
+            <div class="card-body">
+                <h5 class="card-title">Vrijednost artikala</h5>
+                <p class="card-text">{{ ukupna_vrijednost }} €</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-bg-warning mb-3 shadow rounded-4">
+            <div class="card-body">
+                <h5 class="card-title">Broj kategorija</h5>
+                <p class="card-text">{{ broj_kategorija }}</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
