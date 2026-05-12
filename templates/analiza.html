@@ -31,4 +31,84 @@
     </div>
 
 </div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <canvas id="grafikonCijena" style="max-height:250px;"></canvas>
+        </div>
+        <div class="col-md-6">
+            <canvas id="grafikonKolicina" style="max-height:250px;"></canvas>
+        </div>
+    </div>
+</div>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <canvas id="grafikonKategorije" style="max-height:250px;"></canvas>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const nazivi = {{ nazivi | tojson}};
+    const cijene = {{ cijene | tojson}};
+    const kolicine = {{ kolicine | tojson}};
+    const kategorijeNazivi = {{ kategorije_nazivi | tojson}};
+    const kategorijeBrojevi = {{ kategorije_brojevi | tojson}};
+
+    function bojaKolicina(kolicina) {
+        if (kolicina > 50) {
+            return 'rgba(255, 99, 132, 0.7)';
+        }
+        else if (kolicina <= 5) {
+            return 'rgba(255, 206, 86, 0.7)';
+        }
+        else {
+            return 'rgba(75, 192, 192, 0.7)';
+        }
+    }
+
+    const bojeKolicina = kolicine.map(k => bojaKolicina(k));
+
+    new Chart(document.getElementById('grafikonCijena'), {
+        type: 'bar',
+        data: {
+            labels: nazivi,
+            datasets: [{
+                label: 'Cijena (€)',
+                data: cijene,
+                backgroundColor: 'rgba(200, 100, 75, 0.7)'
+            }]
+        }
+    });
+
+    new Chart(document.getElementById('grafikonKolicina'), {
+        type: 'bar',
+        data: {
+                labels: nazivi,
+                datasets: [{
+                    label: 'Količina',
+                    data: kolicine,
+                    backgroundColor: bojeKolicina
+                }]
+        }
+    });
+
+    new Chart(document.getElementById('grafikonKategorije'), {
+        type: 'pie',
+        data: {
+            labels: kategorijeNazivi,
+            datasets: [{
+                data: kategorijeBrojevi,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(255, 206, 86, 0.7)',
+                    'rgba(75, 192, 192, 0.7)'
+                ]
+            }]
+        }
+    });
+</script>
 {% endblock %}

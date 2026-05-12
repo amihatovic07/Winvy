@@ -76,7 +76,15 @@ def analiziraj():
         ukupna_vrijednost = sum(a.kolicina * a.cijena for a in artikli)
         kategorije = set(a.kategorija for a in artikli)
         broj_kategorija = len(kategorije)
-    return render_template('analiza.html', ukupna_kolicina=ukupna_kolicina, ukupna_vrijednost=ukupna_vrijednost, broj_kategorija=broj_kategorija)
+        nazivi = [a.naziv for a in artikli]
+        cijene = [a.cijena for a in artikli]
+        kolicine = [a. kolicina for a in artikli]
+        kategorije_dict = {}
+        for a in artikli:
+            kategorije_dict[a.kategorija] = kategorije_dict.get(a.kategorija, 0) + 1
+        kategorije_nazivi = list(kategorije_dict.keys())
+        kategorije_brojevi = list(kategorije_dict.values())
+    return render_template('analiza.html', ukupna_kolicina=ukupna_kolicina, ukupna_vrijednost=ukupna_vrijednost, broj_kategorija=broj_kategorija, nazivi=nazivi, cijene=cijene, kolicine=kolicine, kategorije_nazivi=kategorije_nazivi, kategorije_brojevi=kategorije_brojevi)
 
 @app.route('/pregledaj_artikle', methods=['GET'])
 def pregled():
