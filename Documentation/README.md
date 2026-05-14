@@ -64,7 +64,7 @@ Navedeno je sadržaj konstrukcije navedenog README filea
 
 ### <div style="text-align:center;">Pregledavanje</div>
 <div>
-    <p>Funkcionalnost za pregledavanje je kreirana unutar backenda, naziva se "/pregledaj_artikle" gdje se koristi metoda GET koja omogućava dohvaćanje podataka i ti dohvaćeni podatci se onda formiraju u obliku liste i tako se prikazuju korisniku, važno za napomenuti jest kako se navedeni pregled artikala .</p>
+    <p>Funkcionalnost za pregledavanje je kreirana unutar backenda, naziva se "/pregledaj_artikle" gdje se koristi metoda GET koja omogućava dohvaćanje podataka i ti dohvaćeni podatci se onda formiraju u obliku liste i tako se prikazuju korisniku, važno za napomenuti jest kako se navedeni pregled artikala izvršava odmah na početnoj stranici na kojoj se početno nalazimo kada pokrenemo web servis ili kada izvršimo neku CRUD operaciju, CRUD operacije se odabiru u navbaru na vrhu stranica. Navbar je formiran unutar jinja formata</p>
 </div>
 
 ---

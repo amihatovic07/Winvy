@@ -65,7 +65,7 @@ def uredi():
                 artikl.cijena = float(request.form['cijena'])
                 artikl.kolicina = int(request.form['kolicina'])
                 artikl.kategorija = request.form['kategorija']
-            return redirect('/')
+        return redirect('/')
     return render_template('uredi.html')
 
 @app.route('/analiziraj_artikle', methods=['GET'])
@@ -73,7 +73,7 @@ def analiziraj():
     with db_session:
         artikli = list(Artikl.select())
         ukupna_kolicina = sum(a.kolicina for a in artikli)
-        ukupna_vrijednost = sum(a.kolicina * a.cijena for a in artikli)
+        ukupna_vrijednost = round(sum(a.kolicina * a.cijena for a in artikli), 2)
         kategorije = set(a.kategorija for a in artikli)
         broj_kategorija = len(kategorije)
         nazivi = [a.naziv for a in artikli]

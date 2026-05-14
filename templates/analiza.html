@@ -58,10 +58,10 @@
     const kategorijeBrojevi = {{ kategorije_brojevi | tojson}};
 
     function bojaKolicina(kolicina) {
-        if (kolicina > 50) {
+        if (kolicina <= 9) {
             return 'rgba(255, 99, 132, 0.7)';
         }
-        else if (kolicina <= 5) {
+        else if (kolicina >= 10 && kolicina <= 40) {
             return 'rgba(255, 206, 86, 0.7)';
         }
         else {
