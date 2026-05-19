@@ -2,23 +2,10 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h2 class="mb-4">Pregled artikala</h2>
-
-    <div class="row">
-        {% for artikl in artikli %}
-        <div class="col-md-4 mb-3">
-            <div class="card shadow-sm h-100">
-                <div class="card-body">
-                    <h5 class="card-title">{{ artikl.naziv }}</h5>
-                    <p class="card-text">
-                        <strong>Cijena:</strong> {{ artikl.cijena }} €<br>
-                        <strong>Količina:</strong> {{ artikl.kolicina }}<br>
-                        <strong>Kategorija:</strong> {{ artikl.kategorija }}
-                    </p>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
+    <h2>Opis projekta</h2>
+    <div class="Napomene-opisi">
+        <p class="kratki-opis">Navedeni projekt kreiran je od strane studenta redovnog smjera informatike, Alex Mihatović. Navedeni Projekt se sastoji od USE case dijagrama koji se nalazi unutar dokumentacije projekta. Navedeni projekt istodobno objedinjuje python flask, pony orm primjenu baze podataka te kreiranja docker kontejnera. Navedeni elementi su znatno važni za praktičnu primjenu s obzirom da su fundamentalni za kreiranje web aplikacija, zasada ovo je web servis no formiranjem pravilnih funkcionalnosti, povečavanjem apstraktnosti baze podataka te formiranjem detaljnijih i efikasnijih zaahtijeva moguće je formirati web aplikaciju primjerice Web shop. Za takvu primjenu potrebni su stabilni temelji u izradi web servisa te iz tog razloga ovakav projekt je važan.</p>
+        <p class="kratki-opis">Winvy stoji za Web shop inventory te baš to je i namjena navedenog web servisa, da upravlja inventarom od web shopa kako bi admin mogao dodavati, uklanjati, uređivati i analizirati artikle koji se nalaze na stanju i u ponudi.</p>
     </div>
 </div>
 {% endblock %}

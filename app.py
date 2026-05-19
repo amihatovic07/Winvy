@@ -17,10 +17,7 @@ db.generate_mapping(create_tables=True)
 
 @app.route('/')
 def index():
-    with db_session:
-        artikli = list(Artikl.select())[:]
-        lista = [{"naziv": a.naziv, "cijena": a.cijena, "kolicina": a.kolicina, "kategorija": a.kategorija} for a in artikli]
-    return render_template("index.html", artikli=lista)
+    return render_template('index.html')
 
 @app.route('/dodaj_artikle', methods=['GET', 'POST'])
 def dodaj():
@@ -91,7 +88,7 @@ def pregled():
     with db_session:
         artikli = list(Artikl.select())[:]
         lista = [{"naziv": a.naziv, "cijena": a.cijena, "kolicina": a.kolicina, "kategorija": a.kategorija} for a in artikli]
-    return make_response(jsonify(lista), 200)
+    return render_template("pregled.html", artikli=lista)
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port=8080)

@@ -1,0 +1,23 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Pregled artikala</h2>
+    <div class="row">
+        {% for artikl in artikli %}
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ artikl.naziv }}</h5>
+                    <p class="card-text">
+                        <strong>Cijena:</strong> {{ artikl.cijena }} €<br>
+                        <strong>Količina:</strong> {{ artikl.kolicina }}<br>
+                        <strong>Kategorija:</strong> {{ artikl.kategorija }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
