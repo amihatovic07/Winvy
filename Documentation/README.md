@@ -73,7 +73,7 @@ Navedeno je sadržaj konstrukcije navedenog README filea
 <div id="sustav">
     Sustav za Winvy web servis konstruiran je pomoću python flaska, ponyorma te je use case dijagram konstruiran pomoću Lucidchart online web aplikacije link:
     <a href="https://lucid.app/lucidchart/35df017e-a29f-4050-b4d2-7dd062cf979b/edit?viewport_loc=-899%2C-624%2C1663%2C800%2C0_0&invitationId=inv_30358928-d56a-46a1-8e07-02f64bc06152">Winvy - Lucidchart </a>
-    <img src="Winvy.png" width="310px" height="325px">
+    <img src="./../Winvy.png" width="310px" height="325px">
 </div>
 
 ---
