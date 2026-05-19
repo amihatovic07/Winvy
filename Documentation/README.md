@@ -2,7 +2,7 @@
 
 ## <div style="text-align:center;">Sadržaj</div>
 <div style="display: flex; align-items:center; gap: 10px;">
-    <img src="static/Logo.PNG" width="50px" height="75px">
+    <img src="./../static/Logo.PNG" width="50px" height="75px">
     <p>Navedeni README dokument se sastoji od detaljnog opisa Winvy web servisa čiji je kreator: Alex Mihatović, student redovnog smjera informatike na fakultetu za informatiku u Puli, a web servis je kreiran za kolegij Informacijski sustav.</p>
 </div>
 
