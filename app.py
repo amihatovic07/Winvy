@@ -60,8 +60,8 @@ def uredi(naziv):
         if not artikl:
             return jsonify({"poruka": "Artikl nije pronađen"}), 404
         artikl.cijena = float(data['cijena'])
-        artikl.kolicina = float(data['kolicina'])
-        artikl.kategorija = float(data['kategorija'])
+        artikl.kolicina = int(data['kolicina'])
+        artikl.kategorija = str(data['kategorija'])
     return jsonify({"poruka": "Artikl uređen!"})
 
 @app.route('/analiziraj_artikle', methods=['GET'])
