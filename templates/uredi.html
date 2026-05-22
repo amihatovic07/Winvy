@@ -3,12 +3,38 @@
 {% block content %}
 <div class="container mt-4">
     <h2>Uredi artikl</h2>
-    <form method="POST" action="/uredi_artikle">
-        <input type="text" name="naziv" placeholder="Naziv artikla koji se uređuje" class="form-control mb-2">
-        <input type="number" name="cijena" placeholder="Cijena artikla" min="0" class="form-control mb-2">
-        <input type="number" name="kolicina" placeholder="Količina artikla" min="0" class="form-control mb-2">
-        <input type="text" name="kategorija" placeholder="Kategorija artikla" class="form-control mb-2">
+    <form onsubmit="uredi(event)">
+        <input type="text" id="naziv" placeholder="Naziv artikla koji se uređuje" class="form-control mb-2">
+        <input type="number" id="cijena" placeholder="Cijena artikla" step="0.01" min="0" class="form-control mb-2">
+        <input type="number" id="kolicina" placeholder="Količina artikla" min="0" class="form-control mb-2">
+        <input type="text" id="kategorija" placeholder="Kategorija artikla" class="form-control mb-2">
         <button type="submit" class="btn btn-primary">Uredi</button>
     </form>
+    <script>
+        async function uredi(event) {
+            event.preventDefault();
+            const naziv = document.getElementById('naziv').value;
+            const cijena = document.getElementById('cijena').value;
+            const kolicina = document.getElementById('kolicina').value;
+            const kategorija = document.getElementById('kategorija').value;
+            const response = await fetch(`/uredi_artikle/${naziv}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    cijena: parseFloat(cijena),
+                    kolicina: parseInt(kolicina),
+                    kategorija: kategorija
+                })
+            });
+            if (response.ok) {
+                window.location.href = '/pregledaj_artikle';
+            }
+            else {
+                alert("Greška pri uređivanju artikala.");
+            }
+        }
+    </script>
 </div>
 {% endblock %}

@@ -3,9 +3,24 @@
 {% block content %}
 <div class="container mt-4">
     <h2>Ukloni artikl</h2>
-    <form method="POST" action="/ukloni_artikle">
-        <input type="text" name="naziv" placeholder="Naziv artikla" class="form-control mb-2">
+    <form onsubmit="ukloni(event)">
+        <input type="text" id="naziv" placeholder="Naziv artikla" class="form-control mb-2">
         <button type="submit" class="btn btn-danger">Ukloni</button>
     </form>
+    <script>
+        async function ukloni(event) {
+        event.preventDefault();
+            const naziv = document.getElementById('naziv').value;
+            const response = await fetch(`/ukloni_artikle/${naziv}`, {
+                method: 'DELETE'
+            });
+            if (response.ok) {
+                window.location.href ='/pregledaj_artikle';
+            }
+            else {
+                alert("Greška pri uklanjanju artikla.");
+            }
+        }
+    </script>
 </div>
 {% endblock %}

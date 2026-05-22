@@ -35,35 +35,34 @@ def dodaj():
         return redirect('/')
     return render_template('dodaj.html')
 
-@app.route('/ukloni_artikle', methods=['GET', 'POST'])
-def ukloni():
-    if request.method == 'POST':
-        naziv = request.form['naziv']
-        with db_session:
-            artikl = Artikl.get(naziv=naziv)
-            if artikl:
-                artikl.delete()
-        return redirect('/')
+@app.route('/ukloni_artikle', methods=['GET'])
+def ukloni_stranica():
     return render_template('ukloni.html')
 
-@app.route('/uredi_artikle', methods=['GET', 'POST'])
-def uredi():
-    if request.method == 'POST':
-        naziv = request.form['naziv']
-        cijena = float(request.form['cijena'])
-        kolicina = int(request.form['kolicina'])
+@app.route('/ukloni_artikle/<naziv>', methods=['DELETE'])
+def ukloni(naziv):
+    with db_session:
+        artikl = Artikl.get(naziv=naziv)
+        if artikl:
+            artikl.delete()
+    return jsonify({"poruka": "Artikl uklonjen"}), 200
 
-        if cijena < 0 or kolicina < 0:
-            return "Greška: cijena i količina ne mogu biti negativne.", 400
-
-        with db_session:
-            artikl = Artikl.get(naziv=naziv)
-            if artikl:
-                artikl.cijena = float(request.form['cijena'])
-                artikl.kolicina = int(request.form['kolicina'])
-                artikl.kategorija = request.form['kategorija']
-        return redirect('/')
+@app.route('/uredi_artikle', methods=['GET'])
+def uredi_stranica():
     return render_template('uredi.html')
+
+
+@app.route('/uredi_artikle/<naziv>', methods=['PUT'])
+def uredi(naziv):
+    data = request.get_json()
+    with db_session:
+        artikl = Artikl.get(naziv=naziv)
+        if not artikl:
+            return jsonify({"poruka": "Artikl nije pronađen"}), 404
+        artikl.cijena = float(data['cijena'])
+        artikl.kolicina = float(data['kolicina'])
+        artikl.kategorija = float(data['kategorija'])
+    return jsonify({"poruka": "Artikl uređen!"})
 
 @app.route('/analiziraj_artikle', methods=['GET'])
 def analiziraj():
