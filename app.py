@@ -45,7 +45,7 @@ def ukloni(naziv):
         artikl = Artikl.get(naziv=naziv)
         if artikl:
             artikl.delete()
-    return jsonify({"poruka": "Artikl uklonjen"}), 200
+        return jsonify({"poruka": "Artikl uklonjen"}), 200
 
 @app.route('/uredi_artikle', methods=['GET'])
 def uredi_stranica():
